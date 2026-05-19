@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://qd8chycf7f2h"]
+
+[ext_resource type="Script" uid="uid://w5lyq2pegjfj" path="res://enemy_1.gd" id="1_pjquw"]
+[ext_resource type="Texture2D" uid="uid://ll6sd8jxaa6i" path="res://gamedevassets/IMG_8272.png" id="2_ovk8a"]
+[ext_resource type="Texture2D" uid="uid://x8p3kup436ma" path="res://gamedevassets/IMG_8271.png" id="3_gqj32"]
+[ext_resource type="Texture2D" uid="uid://ciplbcpgddlps" path="res://gamedevassets/IMG_8270.png" id="4_wswjf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sa1y5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ovk8a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gqj32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wswjf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pjquw"]
+radius = 104.47
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_663o1"]
+radius = 196.18
+
+[node name="Enemy1" type="CharacterBody2D" unique_id=74680318]
+script = ExtResource("1_pjquw")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=70038518]
+position = Vector2(-3, -28)
+scale = Vector2(0.115, 0.115)
+sprite_frames = SubResource("SpriteFrames_sa1y5")
+autoplay = "default"
+frame_progress = 0.92120755
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1992307779]
+collision_layer = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionArea" unique_id=1400739648]
+shape = SubResource("CircleShape2D_pjquw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=711505545]
+position = Vector2(-1, -3)
+scale = Vector2(0.049999997, 0.049999997)
+shape = SubResource("CircleShape2D_663o1")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b0i1n6jqvcuru"]
+
+[ext_resource type="Script" uid="uid://brcm45fx6577u" path="res://signInteract.gd" id="1_2w6ku"]
+[ext_resource type="Texture2D" uid="uid://bugi62cglevty" path="res://gamedevassets/OIP-977729241.jpg" id="2_eqin3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w57s6"]
+radius = 16.5
+
+[node name="SignInteractables" type="Area2D" unique_id=743471564]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_2w6ku")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=861122921]
+shape = SubResource("CircleShape2D_w57s6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1848035611]
+position = Vector2(-1.0000019, 1.9073486e-06)
+scale = Vector2(0.09125001, 0.08875004)
+texture = ExtResource("2_eqin3")

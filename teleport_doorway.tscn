@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ce8row0fn15me"]
+
+[ext_resource type="Script" uid="uid://dwf0dyw3pb74u" path="res://teleport_doorway.gd" id="1_oi5q1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnk42"]
+
+[node name="Teleport_Doorway" type="Area2D" unique_id=1163165853]
+collision_layer = 0
+script = ExtResource("1_oi5q1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=576534559]
+shape = SubResource("RectangleShape2D_cnk42")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

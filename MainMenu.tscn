@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://d037xhaf0kdl8"]
+
+[ext_resource type="Script" uid="uid://bv85senw5iuu5" path="res://main_menu.gd" id="1_7r1g0"]
+[ext_resource type="Texture2D" uid="uid://dq2oudxcfw0kf" path="res://gamedevassets/MainMenu.png" id="1_iwfq2"]
+[ext_resource type="Texture2D" uid="uid://c5jc7vv1lcj7" path="res://gamedevassets/continue.png" id="2_7r1g0"]
+[ext_resource type="Texture2D" uid="uid://b5wtlcp1by5fk" path="res://gamedevassets/newgame.png" id="3_cqjrg"]
+[ext_resource type="Texture2D" uid="uid://1nhfnwuy5uio" path="res://gamedevassets/options.png" id="4_e2xy7"]
+[ext_resource type="Texture2D" uid="uid://cperh8032l7or" path="res://gamedevassets/Tongue-PNG-Pic-3834541266.png" id="5_fimr5"]
+[ext_resource type="AudioStream" uid="uid://dji4w703klqhe" path="res://menu.mp3" id="7_cqjrg"]
+
+[node name="MarginContainer" type="MarginContainer" unique_id=535148213]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+script = ExtResource("1_7r1g0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1524720062]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=245128763]
+layout_mode = 2
+alignment = 1
+
+[node name="Main Menu" type="TextureRect" parent="HBoxContainer/VBoxContainer" unique_id=1505101040]
+custom_minimum_size = Vector2(800, 200)
+layout_mode = 2
+texture = ExtResource("1_iwfq2")
+expand_mode = 1
+
+[node name="Continue" type="TextureButton" parent="HBoxContainer/VBoxContainer" unique_id=1198032128]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("2_7r1g0")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="NewGame" type="TextureButton" parent="HBoxContainer/VBoxContainer" unique_id=1355984813]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("3_cqjrg")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Options" type="TextureButton" parent="HBoxContainer/VBoxContainer" unique_id=542077332]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("4_e2xy7")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=1555620504]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer" unique_id=204758563]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("5_fimr5")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="." unique_id=477047325]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=695000639]
+layout_mode = 0
+offset_right = 914.0
+offset_bottom = 58.0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=729513808]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1684581679]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="HSlider" type="HSlider" parent="Panel/VBoxContainer/HBoxContainer" unique_id=394028100]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.001
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="BackButton" type="Button" parent="Panel/VBoxContainer" unique_id=1377961029]
+layout_mode = 2
+text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=956961190]
+stream = ExtResource("7_cqjrg")
+volume_db = -15.509
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Options" to="." method="_on_options_button_pressed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Panel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

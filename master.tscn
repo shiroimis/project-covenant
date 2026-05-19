@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://b33no2lrrlgp6"]
+
+[ext_resource type="Script" uid="uid://bwpq8e7qd0q42" path="res://master.gd" id="1_te040"]
+[ext_resource type="PackedScene" uid="uid://indgwbvruhoe" path="res://player.tscn" id="2_s35ub"]
+[ext_resource type="Script" uid="uid://b6hq5amt2ro1q" path="res://canvas_layer.gd" id="3_h2bm4"]
+[ext_resource type="PackedScene" uid="uid://dcucvaf6ewqlu" path="res://HUD.tscn" id="4_8aqai"]
+
+[sub_resource type="Animation" id="Animation_s35ub"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ScreenFade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.40784314, 0.40784314, 0.40784314, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8aqai"]
+resource_name = "fade_in"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ScreenFade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.40784314, 0.40784314, 0.40784314, 1), Color(0.40784314, 0.40784314, 0.40784314, 1), Color(0.40784314, 0.40784314, 0.40784314, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h2bm4"]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ScreenFade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.40784314, 0.40784314, 0.40784314, 0), Color(0.40784314, 0.40784314, 0.40784314, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8aqai"]
+_data = {
+&"RESET": SubResource("Animation_s35ub"),
+&"fade_in": SubResource("Animation_8aqai"),
+&"fade_out": SubResource("Animation_h2bm4")
+}
+
+[node name="Master" type="Node2D" unique_id=926993434]
+script = ExtResource("1_te040")
+
+[node name="LevelContainer" type="Node2D" parent="." unique_id=58547460]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1062704070]
+libraries/ = SubResource("AnimationLibrary_8aqai")
+
+[node name="Player" parent="." unique_id=130018627 instance=ExtResource("2_s35ub")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1955290164]
+follow_viewport_enabled = true
+follow_viewport_scale = 2.0
+script = ExtResource("3_h2bm4")
+
+[node name="ScreenFade" type="ColorRect" parent="CanvasLayer" unique_id=1382578403]
+clip_contents = true
+custom_minimum_size = Vector2(1080, 720)
+offset_left = -832.0
+offset_top = -681.0
+offset_right = 795.0
+offset_bottom = 652.0
+mouse_filter = 2
+color = Color(0.40784314, 0.40784314, 0.40784314, 0)
+
+[node name="HUD" parent="." unique_id=1693359659 instance=ExtResource("4_8aqai")]
